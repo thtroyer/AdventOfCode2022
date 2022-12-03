@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.util.Arrays.compare;
 import static java.util.Arrays.stream;
@@ -23,11 +24,17 @@ public class Main {
     public void run() {
 
         var elves = sumElfContents( parseToList(readInput("src/Day1/input.txt")));
-
         var indexOfLargestCarryingElf = returnIndexOfLargest(elves);
 
-        System.out.println("Elf id: " + indexOfLargestCarryingElf);
-        System.out.println("Carrying: " + elves.get(indexOfLargestCarryingElf));
+        System.out.println("First solution:");
+        System.out.println("  Elf id: " + indexOfLargestCarryingElf);
+        System.out.println("  Carrying: " + elves.get(indexOfLargestCarryingElf));
+
+        var sortedElves = sortElves(elves);
+        int top3ElvesContents = sortedElves.get(0).getValue() + sortedElves.get(1).getValue() + sortedElves.get(2).getValue();
+
+        System.out.println("Second solution:");
+        System.out.println("  Top 3: " + top3ElvesContents);
     }
 
     public String readInput(String fileName) {
@@ -72,9 +79,15 @@ public class Main {
         return results;
     }
 
+    public List<Map.Entry<Integer, Integer>> sortElves(Map<Integer, Integer> elves) {
+        return elves.entrySet().stream().sorted(
+                (e1, e2) -> e1.getValue() < e2.getValue() ? 1 : ((e1.getValue().equals(e2.getValue())) ? 0 : -1)
+        ).collect(Collectors.toList());
+    }
+
     public int returnIndexOfLargest(Map<Integer, Integer> elves) {
         Optional<Map.Entry<Integer, Integer>> e = elves.entrySet().stream().max(
-                (e1, e2) -> e1.getValue() < e2.getValue() ? -1 : ((e1.getValue().equals(e1.getValue())) ? 0 : 1)
+                (e1, e2) -> e1.getValue() < e2.getValue() ? -1 : ((e1.getValue().equals(e2.getValue())) ? 0 : 1)
         );
 
         if (e.isEmpty()) {
