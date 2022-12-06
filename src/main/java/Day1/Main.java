@@ -23,7 +23,7 @@ public class Main {
 
     public void run() {
 
-        var elves = sumElfContents( parseToList(readInput("src/Day1/input.txt")));
+        var elves = sumElfContents( parseToList(readInput("src/main/java/Day1/input.txt")));
         var indexOfLargestCarryingElf = returnIndexOfLargest(elves);
 
         System.out.println("First solution:");

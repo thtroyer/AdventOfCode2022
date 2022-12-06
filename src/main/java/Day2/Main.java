@@ -21,7 +21,7 @@ public class Main {
     }
 
     public void solution1() {
-        var input = readInput("src/Day2/input.txt");
+        var input = readInput("src/main/java/Day2/input.txt");
         Function<String, Integer> wonScore = in -> {
             char o = in.charAt(0);
             char p = in.charAt(2);
@@ -59,7 +59,7 @@ public class Main {
     }
 
     public void solution2() {
-        var input = readInput("src/Day2/input.txt");
+        var input = readInput("src/main/java/Day2/input.txt");
 
         // X = lose, Y = tie, Z = win
 
