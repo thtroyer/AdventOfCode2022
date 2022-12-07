@@ -2,12 +2,14 @@ package Day3;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 
 class MainTest {
     @Test
     public void testSimpleInput() {
-        assertThat(new Main().run(
+        assertThat(new Main().part1(
                 """
                         vJrwpWtwJgWrhcsFMMfFFhFp
                         jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
@@ -17,6 +19,18 @@ class MainTest {
                         CrZsJsPPZsGzwwsLwLmpwMDw
                         """
         )).isEqualTo(157);
+    }
+
+    @Test
+    public void testFindUnique() {
+
+        assertThat(new Main().findUnique(
+                List.of("""
+                        vJrwpWtwJgWrhcsFMMfFFhFp
+                        jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
+                        PmmdzqPrVvPwwTWBwg
+                        """.split("\n")))
+        ).isEqualTo('r');
     }
 
     @Test
